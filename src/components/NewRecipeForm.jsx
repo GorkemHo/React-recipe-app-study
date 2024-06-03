@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../assets/styles/form.scss';
 
 const NewRecipeForm = ({ recipes, addRecipe }) => {
@@ -10,7 +10,7 @@ const NewRecipeForm = ({ recipes, addRecipe }) => {
     e.preventDefault();
 
     addRecipe({
-      id: Number(recipes[recipes.length - 1].id) + 1,
+      id: Date.now().toString(),
       title: title,
       description: description,
       image: image,
@@ -25,6 +25,15 @@ const NewRecipeForm = ({ recipes, addRecipe }) => {
       e.target.classList.remove('shake');
     }, 500);
   };
+
+  // useEffect(() => {
+  //   if (selectedRecipe) {
+  //     setTitle(selectedRecipe.title);
+  //     setDescription(selectedRecipe.description);
+  //     setImage(selectedRecipe.image);
+  //   }
+  // }, [selectedRecipe]);
+
   return (
     <form onSubmit={handleSubmit}>
       <h3>Add New Recipe!</h3>
