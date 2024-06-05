@@ -97,3 +97,61 @@
   top: 2px;
   left: 32px;
 }
+
+//EDİT FORM
+.recipe-card {
+  position: relative;
+
+  .edit-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(137, 145, 255);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 50px rgb(0, 0, 0);
+    z-index: 2;
+    width: 300px;
+    .error {
+      color: red;
+      font-size: 20px;
+      margin-top: 4px;
+      font-weight: bold;
+    }
+    input {
+      width: 90%;
+      margin: 10px 0;
+      padding: 18px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: larger;
+    }
+    button {
+      margin: 0 0 0 12px;
+      padding: 20px 45px;
+      border: 2px solid white;
+      border-radius: 4px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #003e80;
+      }
+      &:nth-child(0) {
+        background-color: #03045e;
+      }
+    }
+  }
+}
+
+.edit-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}

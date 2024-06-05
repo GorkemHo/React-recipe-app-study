@@ -4,3 +4,95 @@ body {
   background-color: #caf0f8;
   box-sizing: border-box;
 }
+/*loading page
+/* HTML: <div class="loader"></div> */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+}
+.loader-1 {
+  transform: scale(3);
+  width: 80px;
+  height: 40px;
+  border-radius: 0 0 100px 100px;
+  border: 5px solid #538a2d;
+  border-top: 0;
+  box-sizing: border-box;
+  background: radial-gradient(farthest-side at top, #0000 calc(100% - 5px), #e7ef9d calc(100% - 4px)),
+    radial-gradient(2px 3px, #5c4037 89%, #0000) 0 0/17px 12px, #ff1643;
+  --c: radial-gradient(farthest-side, #000 94%, #0000);
+  -webkit-mask: linear-gradient(#0000 0 0), var(--c) 12px -8px, var(--c) 29px -8px, var(--c) 45px -6px,
+    var(--c) 22px -2px, var(--c) 34px 6px, var(--c) 21px 6px, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0), var(--c) 12px -8px, var(--c) 29px -8px, var(--c) 45px -6px, var(--c) 22px -2px,
+    var(--c) 34px 6px, var(--c) 21px 6px, linear-gradient(#0000 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude, add, add, add, add, add, add;
+  -webkit-mask-repeat: no-repeat;
+  animation: l8 3s infinite;
+}
+@keyframes l8 {
+  0% {
+    -webkit-mask-size: auto, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0;
+  }
+  15% {
+    -webkit-mask-size: auto, 20px 20px, 0 0, 0 0, 0 0, 0 0, 0 0;
+  }
+  30% {
+    -webkit-mask-size: auto, 20px 20px, 20px 20px, 0 0, 0 0, 0 0, 0 0;
+  }
+  45% {
+    -webkit-mask-size: auto, 20px 20px, 20px 20px, 20px 20px, 0 0, 0 0, 0 0;
+  }
+  60% {
+    -webkit-mask-size: auto, 20px 20px, 20px 20px, 20px 20px, 20px 20px, 0 0, 0 0;
+  }
+  75% {
+    -webkit-mask-size: auto, 20px 20px, 20px 20px, 20px 20px, 20px 20px, 20px 20px, 0 0;
+  }
+  90%,
+  100% {
+    -webkit-mask-size: auto, 20px 20px, 20px 20px, 20px 20px, 20px 20px, 20px 20px, 20px 20px;
+  }
+}
+/* HTML: <div class="loader"></div> */
+.loader {
+  position: absolute;
+  z-index: 1;
+  bottom: 300px;
+  transform: scale(1.5);
+  width: 70px;
+  height: 26px;
+  background: #538a2d;
+  --c: no-repeat linear-gradient(#000 0 0);
+  --s: 18px 18px;
+  -webkit-mask: var(--c) left 4px top 50%, var(--c) center, var(--c) right 4px top 50%, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: l2 1.5s infinite;
+}
+@keyframes l2 {
+  0% {
+    -webkit-mask-size: 0 0, 0 0, 0 0, auto;
+  }
+  16.67% {
+    -webkit-mask-size: var(--s), 0 0, 0 0, auto;
+  }
+  33.33% {
+    -webkit-mask-size: var(--s), var(--s), 0 0, auto;
+  }
+  50% {
+    -webkit-mask-size: var(--s), var(--s), var(--s), auto;
+  }
+  66.67% {
+    -webkit-mask-size: 0 0, var(--s), var(--s), auto;
+  }
+  83.33% {
+    -webkit-mask-size: 0 0, 0 0, var(--s), auto;
+  }
+  100% {
+    -webkit-mask-size: 0 0, 0 0, 0 0, auto;
+  }
+}

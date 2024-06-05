@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Card from './Card';
+import DataContext from '../context/DataContext';
 
-const CardList = ({ recipes, deleteRecipe, updateRecipe }) => {
+const CardList = () => {
+  const { recipes, isLoading, deleteRecipe, updateRecipe } = useContext(DataContext);
+
   return (
     <div className="card-list">
+      {isLoading.read && <p>Loading...</p>}
       {recipes.map((recipe) => (
         <Card
           key={recipe.id}
@@ -14,6 +18,7 @@ const CardList = ({ recipes, deleteRecipe, updateRecipe }) => {
           image={recipe.image}
           deleteRecipe={deleteRecipe}
           updateRecipe={updateRecipe}
+          isLoading={isLoading}
         />
       ))}
     </div>
