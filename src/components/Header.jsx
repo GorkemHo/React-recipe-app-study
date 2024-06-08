@@ -50,14 +50,14 @@ const Header = () => {
           <li>
             <NavLink
               style={({ isActive }) => ({ color: isActive ? '#03045e' : '' })}
-              onClick={isAuthenticated ? handleLogin : handleLogout}
+              onClick={!isAuthenticated ? handleLogin : handleLogout}
               to="login"
             >
               {isAuthenticated ? 'Logout' : 'Login'}
             </NavLink>
           </li>
 
-          <button onClick={isAuthenticated ? handleLogin : handleLogout}>{isAuthenticated ? 'Logout' : 'Login'}</button>
+          {/* <button onClick={isAuthenticated ? handleLogin : handleLogout}>{isAuthenticated ? 'Logout' : 'Login'}</button> */}
         </ul>
       </nav>
       <Outlet />
