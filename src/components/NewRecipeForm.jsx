@@ -48,7 +48,7 @@ const NewRecipeForm = ({}) => {
         <input
           disabled={title === '' || description === '' || image === ''}
           type="submit"
-          value={isLoading ? 'Adding...' : 'Add Recipe'}
+          value={isLoading.add ? 'Adding...' : 'Add Recipe'}
         />
       </div>
     </form>

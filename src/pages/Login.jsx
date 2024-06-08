@@ -1,26 +1,57 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import '../assets/styles/login.scss';
-
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 const Login = () => {
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    //işlemler
+    try {
+      await login(username, password);
+      navigate('/');
+    } catch (error) {
+      alert('error');
+
+      setUserName('');
+      setPassword('');
+    }
+  };
+
+  //john@mail.com - changeme
   return (
     <>
       <div className="login">
-        <form class="login-form">
-          <p class="login-text">
-            <span class="fa-stack fa-lg">
-              <i class="fa fa-circle fa-stack-2x"></i>
-              <i class="fa fa-lock fa-stack-1x"></i>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <p className="login-text">
+            <span className="fa-stack fa-lg">
+              <i className="fa fa-circle fa-stack-2x"></i>
+              <i className="fa fa-lock fa-stack-1x"></i>
             </span>
           </p>
-          <input type="email" class="login-username" autofocus="true" required="true" placeholder="Email" />
-          <input type="password" class="login-password" required="true" placeholder="Password" />
-          <input type="submit" name="Login" value="Login" class="login-submit" />
+          <input
+            type="text"
+            className="login-username"
+            autoFocus={true}
+            required
+            placeholder="Email"
+            onChange={(e) => setUserName(e.target.value)}
+          />
+          <input
+            type="password"
+            className="login-password"
+            required
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <input type="submit" name="Login" value="Login" className="login-submit" />
         </form>
-        <a href="#" class="login-forgot-pass">
-          forgot password?
-        </a>
-        <div class="underlay-photo"></div>
-        <div class="underlay-black"></div>{' '}
+        <div className="underlay-photo"></div>
+        <div className="underlay-black"></div>{' '}
       </div>
     </>
   );

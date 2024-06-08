@@ -28,7 +28,11 @@ ul {
   li {
     font-weight: 600;
     transition: 0.6s;
-
+    a {
+      list-style: none;
+      text-decoration: none;
+      color: white;
+    }
     &:hover {
       color: #03045e;
       transform: scale(1.2);

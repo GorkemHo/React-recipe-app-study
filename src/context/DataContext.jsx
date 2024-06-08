@@ -8,7 +8,7 @@ export const DataProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState({
     read: false,
     add: false,
-    delete: false,
+    delete: [],
     update: false,
   });
   //SİL
@@ -47,13 +47,25 @@ export const DataProvider = ({ children }) => {
 
   const deleteRecipe = async (id) => {
     const url = `http://localhost:3000/recipes/${id}`;
-    //Backend..
-    setIsLoading((prev) => ({ ...prev, delete: true }));
-    await axios.patch(url, { isDeleted: true });
-    console.log('Silme yapıldı');
-    setIsLoading((prev) => ({ ...prev, delete: false }));
-    //Fronend..
-    setRecipes((prev) => prev.filter((statedenGelen) => statedenGelen.id !== id));
+
+    setIsLoading((prevIsLoading) => ({
+      ...prevIsLoading,
+      delete: [...prevIsLoading.delete, id],
+    }));
+
+    try {
+      await axios.patch(url, { isDeleted: true });
+      console.log('Silme yapıldı');
+
+      setRecipes((prev) => prev.filter((recipe) => recipe.id !== id));
+    } catch (error) {
+      console.error('Silme işlemi sırasında hata oluştu:', error);
+    } finally {
+      setIsLoading((prevIsLoading) => ({
+        ...prevIsLoading,
+        delete: prevIsLoading.delete.filter((deletingId) => deletingId !== id),
+      }));
+    }
   };
 
   const updateRecipe = async (id, updatedRecipe) => {

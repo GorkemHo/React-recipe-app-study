@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '../assets/styles/card.scss';
+import { AuthContext } from '../context/AuthContext';
 
 const Card = ({ recipe, title = '', description = '', image = '', id, deleteRecipe, updateRecipe, isLoading }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({ title, description, image });
-
+  const { isAuthenticated } = useContext(AuthContext);
   const [errors, setErrors] = useState({});
 
   const handleEditChange = (e) => {
@@ -47,12 +48,16 @@ const Card = ({ recipe, title = '', description = '', image = '', id, deleteReci
         </div>
       ) : (
         <div className="card" key={recipe.id}>
-          <button onClick={() => deleteRecipe(recipe.id)} className="delete">
-            {isLoading.delete ? 'Deleting...' : 'X'}
-          </button>
-          <button className="edit" onClick={() => setIsEditing(true)}>
-            Edit
-          </button>
+          {isAuthenticated ? (
+            <div>
+              <button onClick={() => deleteRecipe(recipe.id)} className="delete">
+                {isLoading.delete.includes(recipe.id) ? 'Deleting...' : 'X'}
+              </button>
+              <button className="edit" onClick={() => setIsEditing(true)}>
+                Edit
+              </button>
+            </div>
+          ) : null}
           <img src={recipe.image} alt="RecipeImage" />
 
           <div className="card-body">
